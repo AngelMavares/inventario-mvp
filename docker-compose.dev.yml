@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    # Uncomment to enable pgvector
+    #  alternate_postgres:
+    #    image: ankane/pgvector
+    #    volumes:
+    #      - postgres_data:/var/lib/postgresql/data
+    #    environment:
+    #      POSTGRES_USER: user
+    #      POSTGRES_PASSWORD: password
+    #      POSTGRES_DB: database
+
+  redis:
+    image: redis:alpine
+
+  backend:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  postgres_data:
