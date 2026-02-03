@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+databases
+pydantic
+python-multipart
+passlib[bcrypt]
+pyjwt
+httpx
+python-dotenv
+openai
